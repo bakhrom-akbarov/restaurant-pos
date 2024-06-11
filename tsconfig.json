@@ -1,12 +1,24 @@
 {
+  "ts-node": {
+    "require": [
+      "tsconfig-paths/register"
+    ]
+  },
+  "compileOnSave": true,
   "compilerOptions": {
+    "experimentalDecorators": true,
+    "baseUrl": ".",
     "target": "es5",
     "lib": [
       "dom",
       "dom.iterable",
-      "esnext"
+      "esnext",
     ],
     "allowJs": true,
+    "types": [
+      "node",
+      "webpack-env"
+    ],
     "skipLibCheck": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
@@ -18,9 +30,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "emitDecoratorMetadata": true,
+    "jsx": "react",
+    "rootDir": "src"
   },
   "include": [
-    "src"
+    "./src",
+    "./src/**/*"
   ]
 }

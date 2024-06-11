@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Icon, Margins } from '../../../types';
+import { Icon, Margins } from '../../types';
 
 export type CommonInputSizes = 'sm' | 'md' | 'lg' | 'xl' | 'xxl';
 

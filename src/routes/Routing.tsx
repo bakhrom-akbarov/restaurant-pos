@@ -1,12 +1,15 @@
 import React from 'react';
-import { Router } from "react-router";
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
-export const Routes = () => {
+import { MainRoute } from './MainRoute';
+
+export const Routing = () => {
+  console.log('Routing');
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/auth/phone-otp" element={<PhoneOTPscreen />} />
+        <Route path="*" element={<MainRoute />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };

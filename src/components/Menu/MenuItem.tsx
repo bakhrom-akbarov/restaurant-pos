@@ -1,10 +1,10 @@
-import React, { createElement, useCallback, useState } from 'react';
+import React, { createElement } from 'react';
 import { NavLink } from 'react-router-dom';
-import { Box, Typography } from '@carma-technologies/ui-library-react';
 import styled, { css, useTheme } from 'styled-components';
 
-import { ChevronDownIcon, ChevronUpIcon } from '../../icons';
 import { IconSizeColor } from '../../icons/types';
+import { Box } from '../Box';
+import { Typography } from '../Typography';
 
 export type MenuItemProps = {
   icon?: React.ComponentType<IconSizeColor>;
@@ -12,9 +12,7 @@ export type MenuItemProps = {
   as?: React.ElementType;
   items?: MenuItemProps[];
   to?: string;
-  onClick?: () => void;
   prefix?: React.ReactNode;
-  pl?: number;
 };
 
 const Wrapper = styled.div`
@@ -32,6 +30,7 @@ const menuItemStyles = css`
   transition: background-color 0.2s;
   text-decoration: none;
   border-radius: 6px;
+  aspect-ratio: 1 / 1;
 
   & * {
     color: ${(p) => p.theme.colors.gray700};
@@ -54,10 +53,6 @@ const menuItemStyles = css`
   }
 `;
 
-const MenuItemWrapper = styled.div`
-  ${menuItemStyles}
-`;
-
 const MenuItemLinkWrapper = styled(NavLink)<{
   pl?: number;
 }>`
@@ -66,79 +61,34 @@ const MenuItemLinkWrapper = styled(NavLink)<{
 `;
 
 export const MenuItem: React.FC<MenuItemProps> = (props) => {
-  const {
-    icon,
-    label,
-    items,
-    onClick: onClickProp,
-    to,
-    prefix = null,
-    pl,
-    ...rest
-  } = props;
+  const { icon, label, items, to, ...rest } = props;
 
   const theme = useTheme();
-  const [expanded, setExpanded] = useState(false);
 
   const iconElement = icon
     ? createElement<IconSizeColor>(icon, {
-        size: 24,
+        size: 32,
         color: theme.colors.gray500,
       })
     : null;
 
-  const hasItems = !!items?.length;
-
-  const onClick = useCallback(() => {
-    if (hasItems) {
-      setExpanded((prev) => !prev);
-    }
-    onClickProp?.();
-  }, [hasItems, onClickProp]);
-
   return (
     <Wrapper>
-      {hasItems ? (
-        <MenuItemWrapper {...rest} onClick={onClick}>
-          <Box
-            className="menu-item-built-content"
-            display="flex"
-            alignItems="center"
-            gap="12px">
-            {iconElement}
-            <Typography size="md" ml={8} weight="semiBold">
-              {label}
-            </Typography>
-          </Box>
-          {expanded ? (
-            <ChevronUpIcon size={24} color={theme.colors.primary600} />
-          ) : (
-            <ChevronDownIcon size={24} color={theme.colors.gray500} />
-          )}
-        </MenuItemWrapper>
-      ) : (
-        <MenuItemLinkWrapper {...rest} to={to} onClick={onClick}>
-          <Box
-            className="menu-item-built-content"
-            display="flex"
-            alignItems="center"
-            pl={`${pl}px`}
-            gap="12px">
-            {iconElement}
-            <Typography size="md" ml={8} weight="semiBold">
-              {label}
-            </Typography>
-          </Box>
-          {prefix}
-        </MenuItemLinkWrapper>
-      )}
-      {expanded && hasItems && (
-        <Box>
-          {items.map((item, index) => (
-            <MenuItem pl={48} key={index + item.label} {...item} />
-          ))}
+      <MenuItemLinkWrapper {...rest} to={to}>
+        <Box
+          className="menu-item-built-content"
+          display="flex"
+          flexDirection="column"
+          justifyContent="center"
+          alignItems="center"
+          flex={1}
+          gap="12px">
+          {iconElement}
+          <Typography size="md" weight="semiBold">
+            {label}
+          </Typography>
         </Box>
-      )}
+      </MenuItemLinkWrapper>
     </Wrapper>
   );
 };

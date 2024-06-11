@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box } from '@carma-technologies/ui-library-react';
+
+import { Box } from '../Box';
 
 import { MenuItem, MenuItemProps } from './MenuItem';
 

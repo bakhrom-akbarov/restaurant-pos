@@ -1,9 +1,6 @@
 import React from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { HelpCircle } from '../../icons/HelpCircle';
-import { Box } from '../Box';
-import { Tooltip } from '../Tooltip';
 import { Typography } from '../Typography';
 
 import { LabelProps } from './types';
@@ -20,8 +17,7 @@ const LabelWrapper = styled.div`
 `;
 
 export const Label: React.FC<LabelProps> = (props) => {
-  const { children, tooltip, className, style } = props;
-  const theme = useTheme();
+  const { children, className, style } = props;
   return (
     <LabelWrapper style={style}>
       <Typography
@@ -33,19 +29,6 @@ export const Label: React.FC<LabelProps> = (props) => {
         lineHeight={1.25}>
         {children}
       </Typography>
-      {tooltip !== undefined && (
-        <Box display="flex" alignItems="flex-start" mt={0.2}>
-          <Tooltip
-            title={tooltip}
-            animation="scale"
-            duration={300}
-            arrow
-            size="small"
-            arrowSize="small">
-            <HelpCircle size="14px" color={theme.colors.gray400} />
-          </Tooltip>
-        </Box>
-      )}
     </LabelWrapper>
   );
 };

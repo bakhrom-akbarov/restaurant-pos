@@ -1,11 +1,10 @@
 import React, { createElement, isValidElement } from 'react';
 import styled, { useTheme } from 'styled-components';
 
-import { Margins } from '../../../types';
 import { Box } from '../../Box';
-import { IconProps } from '../../Button';
 import { Helper } from '../../Helper';
 import { Label } from '../../Label';
+import { IconProps, Margins } from '../../types';
 
 import { data } from './data';
 import {

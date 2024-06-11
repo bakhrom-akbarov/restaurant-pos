@@ -9,3 +9,8 @@ export type Margins = {
 };
 
 export type Icon = React.ReactNode | JSX.Element | undefined;
+
+export type IconProps = {
+  size?: number;
+  color?: string;
+};

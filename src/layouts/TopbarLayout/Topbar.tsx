@@ -1,7 +1,7 @@
 import React from 'react';
-import { Typography } from '@carma-technologies/ui-library-react';
 import styled from 'styled-components';
 
+import { Typography } from '../../components/Typography';
 import { ArrowLeftIcon } from '../../icons/ArrowLeftIcon';
 
 import { TopBarProps } from './types';

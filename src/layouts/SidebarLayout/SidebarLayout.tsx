@@ -12,7 +12,7 @@ const SidebarLayoutWrapper = styled.div`
 `;
 
 const SidebarLayoutSidebar = styled.div`
-  width: 240px;
+  width: 124px;
   height: 100%;
 `;
 
