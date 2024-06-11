@@ -1,0 +1,96 @@
+{
+  "extends": [
+    "react-app",
+    "react-app/jest",
+    "prettier",
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended"
+  ],
+  "plugins": [
+    "unused-imports",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import",
+    "prettier",
+    "simple-import-sort"
+  ],
+  "rules": {
+    "simple-import-sort/imports": "warn",
+    "simple-import-sort/exports": "warn",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "prettier/prettier": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "sort-imports": "off",
+    "import/order": "off",
+    "linebreak-style": "off",
+    "react/no-unescaped-entities": "off",
+    "eol-last": [
+      "warn",
+      "always"
+    ],
+    "object-curly-spacing": [
+      "error",
+      "always"
+    ]
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "overrides": [
+    // override "simple-import-sort" config
+    {
+      "files": [
+        "*.js",
+        "*.jsx",
+        "*.ts",
+        "*.tsx"
+      ],
+      "rules": {
+        "simple-import-sort/imports": [
+          "warn",
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              [
+                "^react",
+                "^@?\\w"
+              ],
+              // Internal packages.
+              [
+                "^(@|components)(/.*|$)"
+              ],
+              // Side effect imports.
+              [
+                "^\\u0000"
+              ],
+              // Parent imports. Put `..` last.
+              [
+                "^\\.\\.(?!/?$)",
+                "^\\.\\./?$"
+              ],
+              // Other relative imports. Put same-folder imports and `.` last.
+              [
+                "^\\./(?=.*/)(?!/?$)",
+                "^\\.(?!/?$)",
+                "^\\./?$"
+              ],
+              // Style imports.
+              [
+                "^.+\\.?(css)$"
+              ]
+            ]
+          }
+        ]
+      }
+    }
+  ]
+}
